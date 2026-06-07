@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  churn-api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - MODEL_PATH=/app/model.pkl
+      - FEATURES_PATH=/app/features.json
+      - DATA_DIR=/data/raw
+    restart: unless-stopped
